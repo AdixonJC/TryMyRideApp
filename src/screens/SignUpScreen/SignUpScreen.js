@@ -1,21 +1,45 @@
 import { View, Text, StyleSheet, ScrollView, Linking} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
-import { Link, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import {BASE_URL} from '@env'
+import axios from 'axios';
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat , setPasswordRepeat] = useState("");
+  const [errorMessage, setError] = useState({errorEmail:"", errorPassword:"", errorName:""})
+  const [successMessage, setSuccess] = useState("")
 
   const navigation = useNavigation();
 
   const onRegisterPressed = () => {
-    navigation.navigate("ConfirmEmail")
+    if(!username || !email || !password || !passwordRepeat)
+       alert('Please enter all the required fields', {name:username,email:email, password:password})
+       else {
+      
+        axios.post(`${BASE_URL}/api/register`)
+         .then(response => {
+           if(response.data.status)
+           {
+              console.log(response.data.messages);
+           }
+           else{
+             let errorEmailMsg = response.data.messages.email ? response.data.messages.email[0] : "",
+             errorPassMsg = response.data.messages.password ? response.data.messages.password[0] : "",
+             errorNameMsg = response.data.messages.name ? response.data.messages.name[0] : "";
+             setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorNameMsg})
+             navigation.navigate("ConfirmEmail")
+           }
+          })
+          .catch(e => console.log(e.message))
+        }
   };
+  
 
   const editUser = () => {
     console.warn("User edited");
