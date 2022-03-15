@@ -24,10 +24,6 @@ const SignInScreen = () => {
     navigation.navigate("ForgotPassword")
   };
 
-  const editUser = () => {
-    console.warn("User edited");
-  };
-
   const onSignUpPress = () => {
     navigation.navigate("SignUp")
   };
@@ -61,10 +57,7 @@ const SignInScreen = () => {
 
       <SocialSignInButtons/>
 
-       <CustomButton 
-        text="Edit User" 
-        onPress={editUser}
-       />
+       
 
        <CustomButton 
         text="Dont have an account? Create one" 

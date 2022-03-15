@@ -20,6 +20,7 @@ const SignUpScreen = () => {
     if(!username || !email || !password || !passwordRepeat)
        alert('Please enter all the required fields', {name:username,email:email, password:password})
        else {
+         navigation.navigate("ConfirmEmail") //eliminar esta navegacion para usar el backend
       
         axios.post(`${BASE_URL}/api/register`)
          .then(response => {
@@ -32,17 +33,13 @@ const SignUpScreen = () => {
              errorPassMsg = response.data.messages.password ? response.data.messages.password[0] : "",
              errorNameMsg = response.data.messages.name ? response.data.messages.name[0] : "";
              setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorNameMsg})
-             navigation.navigate("ConfirmEmail")
+            //  navigation.navigate("ConfirmEmail")  <------ descomentar esta navegacion para usar el backend
            }
           })
           .catch(e => console.log(e.message))
         }
   };
   
-
-  const editUser = () => {
-    console.warn("User edited");
-  };
 
   const onSignInPress = () => {
     navigation.navigate("SignIn")
@@ -96,10 +93,6 @@ const SignUpScreen = () => {
 
       <SocialSignInButtons/>
 
-       <CustomButton 
-        text="Edit User" 
-        onPress={editUser}
-       />
 
        <CustomButton 
         text="Have an account? Sign in" 
