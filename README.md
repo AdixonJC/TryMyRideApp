@@ -17,6 +17,8 @@ para el backend debes tener instalados los siguientes programas:
 
 encontraras una carpeta llamada **TryMyRide-Backend** 
 corta y pega esta carpeta en : C:\xampp\htdocs o donde se encuentre tu carpeta xampp/htdocs
+
+te posicionaras sobre la carpeta crudtrymyride
 y ya podras correr el back con el comando : php artisan serve
 
 en esta aplicacion podras notar que es un formulario completo de registro, con todos los posibles registros disponibles
