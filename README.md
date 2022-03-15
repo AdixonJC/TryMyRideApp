@@ -22,10 +22,23 @@ te posicionaras sobre la carpeta crudtrymyride
 y ya podras correr el back con el comando : php artisan serve
 
 en esta aplicacion podras notar que es un formulario completo de registro, con todos los posibles registros disponibles
-con una navegacion a todos los botones,
+
+**Logins con:**
+<ul>
+  <li>Facebook</li>
+  <li>Google</li>
+  <li>Apple</li>
+  <li>Confirmacion de Correo</li>
+  <li>Recuperar contraseña</li>
+</ul>
+
+con una navegacion a todos los botones, y enlazando las politicas de uso a la pagina de la empresa original
 de momento funcional solo el registro,
 
 <div display="flex">
 <img height="400px" src="./captures/register.jpeg">
 <img height="400px" src="./captures/signIn.jpeg">
+<img height="400px" src="./captures/emailc.jpeg">
+<img height="400px" src="./captures/resetp.jpeg">
+<img height="400px" src="./captures/editp.jpeg">
 </div>
