@@ -1,6 +1,6 @@
 # TryMyRideApp
 
-**App de registro e inicio de sesion**
+**App de registro e inicio de sesion con React Native**
 
 **instalacion**
 
