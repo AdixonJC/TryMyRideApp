@@ -13,8 +13,7 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState("");
   const [passwordRepeat , setPasswordRepeat] = useState("");
   const [errorMessage, setError] = useState({errorEmail:"", errorPassword:"", errorName:""})
-  const [successMessage, setSuccess] = useState("")
-
+  
   const navigation = useNavigation();
 
   const onRegisterPressed = () => {
