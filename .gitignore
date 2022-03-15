@@ -1,3 +1,5 @@
+# sensitive information
+*.env
 # OSX
 #
 .DS_Store
@@ -29,7 +31,6 @@ build/
 local.properties
 *.iml
 *.hprof
-*.env
 
 # node.js
 #

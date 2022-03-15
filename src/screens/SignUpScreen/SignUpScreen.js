@@ -16,13 +16,13 @@ const SignUpScreen = () => {
   
   const navigation = useNavigation();
 
-  const onRegisterPressed = () => {
+  const onRegisterPressed = async () => {
     if(!username || !email || !password || !passwordRepeat)
        alert('Please enter all the required fields', {name:username,email:email, password:password})
        else {
-         navigation.navigate("ConfirmEmail") //eliminar esta navegacion para usar el backend
+         navigation.navigate("ConfirmEmail") //comentar esta navegacion para usar el backend
       
-        axios.post(`${BASE_URL}/api/register`)
+       await axios.post(`${BASE_URL}/api/register`, {name: username, email: email, password: password})
          .then(response => {
            if(response.data.status)
            {
@@ -32,8 +32,8 @@ const SignUpScreen = () => {
              let errorEmailMsg = response.data.messages.email ? response.data.messages.email[0] : "",
              errorPassMsg = response.data.messages.password ? response.data.messages.password[0] : "",
              errorNameMsg = response.data.messages.name ? response.data.messages.name[0] : "";
-             setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorNameMsg})
-            //  navigation.navigate("ConfirmEmail")  <------ descomentar esta navegacion para usar el backend
+             setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorNameMsg});
+            //  navigation.navigate("ConfirmEmail") //  <------ descomentar esta navegacion para usar el backend
            }
           })
           .catch(e => console.log(e.message))
