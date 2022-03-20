@@ -5,18 +5,43 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons'
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const SignInScreen = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
 
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
 
   const onSignInPressed = () => {
+    try {
+      if(!email || !password)
+      {
+        alert("Please enter all the required fields")
+      }
+      else {
+         axios.post(`https://e300-2800-e2-1a00-9a37-f498-c030-b263-72ad.ngrok.io/api/login`, {email: email, password: password})
+         .then(response => {
+           
+           console.log(response.data);
+           if(response.data.status)
+           {  
+              navigation.navigate("HomeScreen")
+           }
+           else{
+             console.log(response.data.messages)
+             let errorEmailMsg = response.data.messages.email ? response.data.messages.email[0] : "",
+             errorPassMsg = response.data.messages.password ? response.data.messages.password[0] : ""
+  
+             setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorName:""});
+           }
+          })
+        }
+    } catch (error) {
+      console.log(error);
+    }
     console.warn("Sign in");
-
-    navigation.navigate("HomeScreen")
   };
 
   const onForgotPasswordPressed = () => {
@@ -36,9 +61,9 @@ const SignInScreen = () => {
       resizeMode="contain"/>
 
       <CustomInput 
-       placeholder={"Username"}
-       value={username}
-       setValue={setUsername}
+       placeholder={"Email"}
+       value={email}
+       setValue={setEmail}
       />
 
       <CustomInput 

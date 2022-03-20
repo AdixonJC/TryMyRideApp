@@ -33,7 +33,7 @@ en esta aplicacion podras notar que es un formulario completo de registro, con t
 </ul>
 
 con una navegacion a todos los botones, y enlazando las politicas de uso a la pagina de la empresa original
-de momento funcional solo el registro,
+de momento funcional solo el registro y el login
 
 <div display="flex">
 <img height="400px" src="./captures/register.jpeg">

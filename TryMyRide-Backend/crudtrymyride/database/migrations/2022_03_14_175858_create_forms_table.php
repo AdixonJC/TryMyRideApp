@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
+            
             $table->string('Name');
             $table->string('Email');
             $table->string('Password');
+
             $table->timestamps();
         });
     }

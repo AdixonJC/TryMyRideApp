@@ -9,12 +9,13 @@ class FormController extends Controller
 {
     public function register(Request $request)
     {
-        $response = (new FormService($request->name, $request->email, $request->password))->register($request->devicename);
+        $response = (new FormService($request->email, $request->password, $request->name))->register($request->deviceName);
         return response()->json($response);
     }
 
     public function login(Request $request)
     {
-
+        $response = (new FormService($request->email, $request->password))->login($request->deviceName);
+        return response()->json($response);
     }
 }
