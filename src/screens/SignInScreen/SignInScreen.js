@@ -21,7 +21,7 @@ const SignInScreen = () => {
         alert("Please enter all the required fields")
       }
       else {
-         axios.post(`https://e300-2800-e2-1a00-9a37-f498-c030-b263-72ad.ngrok.io/api/login`, {email: email, password: password})
+         axios.post(`https://bf88-2800-e2-1a00-9a37-f498-c030-b263-72ad.ngrok.io/api/login`, {email: email, password: password})
          .then(response => {
            
            console.log(response.data);

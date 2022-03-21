@@ -1,12 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, Linking} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
-import {BASE_URL} from '@env'
 import axios from 'axios';
-import { DeviceEventEmitter } from 'react-native';
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
@@ -22,25 +20,14 @@ const SignUpScreen = () => {
       if(!username || !email || !password || !passwordRepeat)
        alert('Please enter all the required fields', {name:username,email:email, password:password})
        else {
-       axios.post(`https://e300-2800-e2-1a00-9a37-f498-c030-b263-72ad.ngrok.io/api/register`, {name: username, email: email, password: password, devicename: DeviceEventEmitter.name})
+       axios.post(`https://13d7-2800-e2-1a00-9a37-f498-c030-b263-72ad.ngrok.io/api/register`, {name: username, email: email, password: password})
          .then(response => {
-           
-           if(response.data.status)
-           {
-            navigation.navigate("ConfirmEmail")
-            }
-            else{
-              console.log(response.data.messages)
-              let errorEmailMsg = response.data.messages.email ? response.data.messages.email[0] : "",
-              errorPassMsg = response.data.messages.password ? response.data.messages.password[0] : "",
-              errorNameMsg = response.data.messages.name ? response.data.messages.name[0] : "";
-              setError({errorEmail: errorEmailMsg, errorPassword:errorPassMsg, errorNameMsg});
-            }
+            console.log(response.data.token);
           })
         }
       } catch (error) {
         console.log(error);
-      }  
+      }
   };
   
 
